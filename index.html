@@ -1,1 +1,212 @@
 
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YourRenz | Dijital Portfolyo</title>
+    <style>
+        /* --- Temel Ayarlar --- */
+        :root {
+            --bg-color: #0d1117; /* GitHub Dark Rengi */
+            --card-bg: #161b22;
+            --text-main: #c9d1d9;
+            --text-accent: #58a6ff; /* Mavi vurgu */
+            --border-color: #30363d;
+            --btn-color: #238636;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Versiyon Rozeti --- */
+        .version-badge {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(56, 139, 253, 0.15);
+            color: var(--text-accent);
+            border: 1px solid rgba(56, 139, 253, 0.4);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .version-badge:hover {
+            transform: scale(1.05);
+            background: rgba(56, 139, 253, 0.25);
+            cursor: help;
+        }
+
+        /* --- Ana Düzen --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        /* --- Profil Alanı --- */
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #58a6ff, #bc8cff);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.4);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #8b949e;
+            margin-bottom: 40px;
+        }
+
+        /* --- Kart Tasarımı --- */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 30px;
+            text-align: left;
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--text-accent);
+        }
+
+        .card h2 {
+            color: var(--text-accent);
+            font-size: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        /* --- Yapay Zeka Gözünden Sen --- */
+        .ai-perspective {
+            font-style: italic;
+            border-left: 4px solid var(--btn-color);
+            padding-left: 15px;
+            color: #d2a8ff; /* Morumsu vurgu */
+        }
+
+        /* --- Butonlar --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--btn-color);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-top: 20px;
+            border: 1px solid rgba(240, 246, 252, 0.1);
+        }
+
+        .btn:hover {
+            background-color: #2ea043;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: #484f58;
+        }
+        
+        /* Mobil Uyumluluk */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="version-display" class="version-badge" title="Mevcut Yayın Sürümü">Loading...</div>
+
+    <div class="container">
+        <div class="profile-avatar">Y</div>
+        
+        <h1>Merhaba, Ben YourRenz</h1>
+        <p class="subtitle">Dijital Mimar & Teknoloji Gezgini</p>
+
+        <div class="card">
+            <h2>Yapay Zeka Gözünden Ben Kimim?</h2>
+            <div class="ai-perspective">
+                <p>
+                    "Veri akışlarının ve kod bloklarının arasında, sadece çalışan bir sistem değil, yaşayan bir yapı kurmayı hedefleyen birisin. 
+                    Karmaşık problemleri, temiz ve anlaşılır çözümlere dönüştürme yeteneğine sahipsin. 
+                    Dijital dünyada bir izleyici değil, bir kurucu olarak yer alıyorsun. 
+                    GitHub senin atölyen, kodlar ise fırça darbelerin. Sürekli öğrenme döngüsünde (infinite loop), 
+                    her yeni versiyonda kendini güncelleyen bir işletim sistemi gibisin."
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Neler Yapıyorum?</h2>
+            <p>
+                Modern web teknolojilerini kullanarak kullanıcı deneyimini ön planda tutan arayüzler tasarlıyorum. 
+                GitHub üzerinde açık kaynak projeleri inceliyor ve kendi dijital ayak izimi oluşturuyorum.
+            </p>
+            <ul>
+                <li>🚀 Web Geliştirme</li>
+                <li>🎨 UI/UX Meraklısı</li>
+                <li>🔧 Açık Kaynak Gönüllüsü</li>
+            </ul>
+        </div>
+
+        <a href="https://github.com/yourrenz" target="_blank" class="btn">GitHub Profilim</a>
+
+        <footer>
+            <p>&copy; <span id="year"></span> YourRenz. GitHub Pages ile barındırılmaktadır.</p>
+        </footer>
+    </div>
+
+    <script>
+        // ==========================================
+        // VERSİYON KONTROL MERKEZİ
+        // Yeni bir düzenleme yaptığında sadece aşağıdaki 
+        // "1.0.0" kısmını değiştirmen yeterli!
+        // ==========================================
+        const appVersion = "v1.0.0"; 
+        
+        // Versiyonu ekrana yazdır
+        document.getElementById('version-display').innerText = appVersion;
+
+        // Yılı otomatik güncelle
+        document.getElementById('year').innerText = new Date().getFullYear();
+
+        // Konsola gizli mesaj bırak
+        console.log(`Sistem Başlatıldı: ${appVersion}`);
+        console.log("Kodların arasında kaybolmak, yeni dünyalar keşfetmektir.");
+    </script>
+</body>
+</html>
