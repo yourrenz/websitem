@@ -4,22 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YourRenz | Digital Universe</title>
+    <title>YourRenz | Digital Universe & Library</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
     <style>
         :root {
             --accent-color: #00d2ff;
             --secondary-accent: #3a7bd5;
+            --book-accent: #ff9f43; /* Kitap bölümü için sıcak bir ton */
             --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             --glass-bg: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -28,17 +25,17 @@
             color: #ffffff;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             line-height: 1.6;
-            overflow-x: hidden;
+            padding: 40px 20px;
         }
 
-        /* --- Dinamik Versiyon Etiketi --- */
+        /* --- Versiyon Etiketi --- */
         #version-tag {
             position: fixed;
             top: 25px;
-            left: 25px;
+            right: 25px;
             font-family: 'Fira Code', monospace;
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -46,31 +43,24 @@
             border-radius: 8px;
             border: 1px solid var(--glass-border);
             font-size: 0.8rem;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
         }
 
-        /* --- Ana Kart --- */
         .hero-card {
-            width: 90%;
+            width: 100%;
             max-width: 900px;
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
-            padding: 60px 40px;
+            padding: 50px;
             text-align: center;
             box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            margin-bottom: 30px;
         }
 
         .name-title {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 8vw, 3.5rem);
             font-weight: 700;
             background: linear-gradient(to right, #00d2ff, #92fe9d);
             -webkit-background-clip: text;
@@ -81,24 +71,42 @@
         .role-text {
             font-family: 'Fira Code', monospace;
             color: var(--accent-color);
-            font-size: 1.1rem;
             margin-bottom: 30px;
             display: block;
         }
 
-        .description {
-            font-size: 1.1rem;
-            color: #b0b0d1;
-            max-width: 600px;
-            margin: 0 auto 40px;
+        /* --- Kitap Hobisi Bölümü --- */
+        .book-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--glass-border);
+            text-align: left;
         }
 
-        /* --- Grid Düzeni --- */
+        .book-section h2 {
+            font-size: 1.5rem;
+            color: var(--book-accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .book-quote {
+            font-style: italic;
+            background: rgba(255, 159, 67, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid var(--book-accent);
+            font-size: 0.95rem;
+            color: #eee;
+        }
+
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
         }
 
         .feature-item {
@@ -106,96 +114,72 @@
             padding: 20px;
             border-radius: 15px;
             border: 1px solid var(--glass-border);
-            transition: all 0.3s ease;
         }
 
-        .feature-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: scale(1.03);
-        }
-
-        .feature-item h3 {
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        /* --- Buton --- */
         .cta-button {
             display: inline-block;
-            margin-top: 40px;
-            padding: 15px 35px;
+            padding: 12px 30px;
             background: linear-gradient(45deg, var(--accent-color), var(--secondary-accent));
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3);
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 210, 255, 0.5);
-        }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,210,255,0.4); }
 
-        footer {
-            margin-top: 40px;
-            opacity: 0.5;
-            font-size: 0.8rem;
-        }
-
-        /* Mobil Ayarlar */
-        @media (max-width: 600px) {
-            .name-title { font-size: 2.2rem; }
-            .hero-card { padding: 40px 20px; }
-        }
+        footer { margin-top: 20px; opacity: 0.4; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <div id="version-tag">Build: v1.0.0</div>
+    <div id="version-tag">v1.0.0</div>
 
     <div class="hero-card">
-        <span class="role-text">&lt;creative_mind /&gt;</span>
+        <span class="role-text">&lt;innovator_mind /&gt;</span>
         <h1 class="name-title">YourRenz</h1>
         
-        <p class="description">
-            Sıradan kodları işlevsel sanat eserlerine dönüştüren, dijital dünyanın derinliklerinde mantık ve estetiği birleştiren bir vizyoner.
+        <p style="color: #b0b0d1; margin-bottom: 30px;">
+            Kodun mantığı ile kitabın ruhunu harmanlayan dijital bir gezgin.
         </p>
 
         <div class="features">
             <div class="feature-item">
-                <h3>Merak</h3>
-                <p>Yeni teknolojileri keşfetmek benim için bir hobi değil, bir yaşam biçimi.</p>
+                <h3>Yazılım</h3>
+                <p>Geleceği satır satır inşa ediyorum.</p>
             </div>
             <div class="feature-item">
                 <h3>Analiz</h3>
-                <p>Karmaşıklığı sadeleştirmek, kodun en saf halini bulmak için çalışırım.</p>
-            </div>
-            <div class="feature-item">
-                <h3>Gelecek</h3>
-                <p>Bugünün projelerini, yarının standartlarına göre inşa ediyorum.</p>
+                <p>Veriyi bilgiye dönüştürüyorum.</p>
             </div>
         </div>
 
-        <a href="https://github.com/yourrenz" target="_blank" class="cta-button">Projelerimi Keşfet</a>
+        <div class="book-section">
+            <h2>📚 Entelektüel Kütüphane</h2>
+            <div class="book-quote">
+                "Okuduğum her kitap, kodladığım her projede bana yeni bir perspektif kazandırıyor. 
+                Bilgi, paylaştıkça ve uygulandıkça değer kazanan en büyük hazinem."
+            </div>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #888;">
+                Şu anki ilgi alanlarım: Bilimkurgu, Teknoloji Tarihi ve Kişisel Gelişim.
+            </p>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/yourrenz" target="_blank" class="cta-button">GitHub Profilim</a>
+        </div>
 
         <footer>
-            Created by AI for YourRenz | 2026
+            Built with 🧠 by AI for YourRenz | 2026
         </footer>
     </div>
 
     <script>
-        // --- VERSİYON AYARI ---
-        // Her düzenlemede buradaki rakamı değiştirmen yeterli!
-        const currentVersion = "1.0.0";
+        // --- VERSİYON AYARI (Burayı güncelle) ---
+        const currentVersion = "1.1.0"; 
         
-        document.getElementById('version-tag').innerText = "Build: v" + currentVersion;
-
-        // Arka plana küçük bir yıldız efekti ekleyelim (Opsiyonel)
-        console.log("YourRenz Evrenine Hoş Geldiniz. Versiyon: " + currentVersion);
+        document.getElementById('version-tag').innerText = "v" + currentVersion;
     </script>
 </body>
 </html>
