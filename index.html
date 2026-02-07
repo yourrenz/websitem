@@ -1,185 +1,231 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YourRenz | Digital Universe & Library</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+    <title>YourRenz | Professional Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent-color: #00d2ff;
-            --secondary-accent: #3a7bd5;
-            --book-accent: #ff9f43; /* Kitap bölümü için sıcak bir ton */
-            --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --bg: #030712;
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-dim: #9ca3af;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: default; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-gradient);
-            background-attachment: fixed;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
             color: #ffffff;
-            min-height: 100vh;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Dinamik Versiyon Rozeti --- */
+        #version-hub {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid var(--primary);
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            backdrop-filter: blur(10px);
+            color: var(--primary);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+        }
+
+        /* --- Arka Plan Işık Oyunları --- */
+        .glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* --- Header / Hero Section --- */
+        header {
+            height: 100vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            line-height: 1.6;
-            padding: 40px 20px;
-        }
-
-        /* --- Versiyon Etiketi --- */
-        #version-tag {
-            position: fixed;
-            top: 25px;
-            right: 25px;
-            font-family: 'Fira Code', monospace;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            padding: 8px 15px;
-            border-radius: 8px;
-            border: 1px solid var(--glass-border);
-            font-size: 0.8rem;
-            z-index: 1000;
-        }
-
-        .hero-card {
-            width: 100%;
-            max-width: 900px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 50px;
             text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            margin-bottom: 30px;
+            padding: 0 20px;
+            background: radial-gradient(circle at top, #111827 0%, #030712 100%);
         }
 
-        .name-title {
-            font-size: clamp(2rem, 8vw, 3.5rem);
-            font-weight: 700;
-            background: linear-gradient(to right, #00d2ff, #92fe9d);
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            background: linear-gradient(to bottom right, #fff 30%, var(--text-dim));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
         }
 
-        .role-text {
-            font-family: 'Fira Code', monospace;
-            color: var(--accent-color);
-            margin-bottom: 30px;
-            display: block;
+        .typing-text {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
         }
 
-        /* --- Kitap Hobisi Bölümü --- */
-        .book-section {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid var(--glass-border);
-            text-align: left;
-        }
-
-        .book-section h2 {
-            font-size: 1.5rem;
-            color: var(--book-accent);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .book-quote {
-            font-style: italic;
-            background: rgba(255, 159, 67, 0.1);
-            padding: 15px;
-            border-radius: 12px;
-            border-left: 4px solid var(--book-accent);
-            font-size: 0.95rem;
-            color: #eee;
-        }
-
-        .features {
+        /* --- Ana İçerik --- */
+        .content-section {
+            max-width: 1100px;
+            margin: -100px auto 100px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 0 20px;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        h2 { font-size: 1.8rem; margin-bottom: 20px; color: #fff; }
+        p { color: var(--text-dim); line-height: 1.8; }
+
+        /* --- Kitap & Hobi Progress --- */
+        .stat-bar {
+            margin-top: 20px;
+            background: rgba(255,255,255,0.05);
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .stat-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 85%; /* Örnek değer */
+        }
+
+        /* --- Buton Tasarımı --- */
+        .btn-group {
+            display: flex;
             gap: 15px;
-            margin: 30px 0;
+            margin-top: 50px;
         }
 
-        .feature-item {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid var(--glass-border);
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(45deg, var(--accent-color), var(--secondary-accent));
-            color: white;
+        .main-btn {
+            background: #fff;
+            color: #000;
+            padding: 15px 35px;
+            border-radius: 12px;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
+            font-weight: 600;
             transition: 0.3s;
         }
 
-        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,210,255,0.4); }
+        .main-btn:hover { background: var(--primary); color: #fff; transform: scale(1.05); }
 
-        footer { margin-top: 20px; opacity: 0.4; font-size: 0.8rem; }
+        .secondary-btn {
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 15px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .secondary-btn:hover { background: var(--border); }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* --- Animasyonlar --- */
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+            100% { transform: translate(0, 0); }
+        }
     </style>
 </head>
 <body>
 
-    <div id="version-tag">v1.0.0</div>
+    <div id="version-hub">SYSTEM: v2.0.0</div>
 
-    <div class="hero-card">
-        <span class="role-text">&lt;innovator_mind /&gt;</span>
-        <h1 class="name-title">YourRenz</h1>
-        
-        <p style="color: #b0b0d1; margin-bottom: 30px;">
-            Kodun mantığı ile kitabın ruhunu harmanlayan dijital bir gezgin.
+    <div class="glow" style="top: 10%; left: 10%; animation: float 10s infinite;"></div>
+    <div class="glow" style="bottom: 10%; right: 10%; animation: float 15s infinite reverse;"></div>
+
+    <header>
+        <div class="typing-text">// Hello World, I'm YourRenz</div>
+        <h1 class="hero-title">Geleceği<br>Kodluyorum.</h1>
+        <p style="max-width: 600px; font-size: 1.2rem;">
+            Teknoloji ve edebiyatın kesişim noktasında, temiz kodlar ve derin fikirler üretiyorum.
         </p>
-
-        <div class="features">
-            <div class="feature-item">
-                <h3>Yazılım</h3>
-                <p>Geleceği satır satır inşa ediyorum.</p>
-            </div>
-            <div class="feature-item">
-                <h3>Analiz</h3>
-                <p>Veriyi bilgiye dönüştürüyorum.</p>
-            </div>
+        <div class="btn-group">
+            <a href="https://github.com/yourrenz" class="main-btn">Projeleri Gör</a>
+            <a href="#about" class="secondary-btn">Hakkımda</a>
         </div>
+    </header>
 
-        <div class="book-section">
-            <h2>📚 Entelektüel Kütüphane</h2>
-            <div class="book-quote">
-                "Okuduğum her kitap, kodladığım her projede bana yeni bir perspektif kazandırıyor. 
-                Bilgi, paylaştıkça ve uygulandıkça değer kazanan en büyük hazinem."
-            </div>
-            <p style="margin-top: 15px; font-size: 0.9rem; color: #888;">
-                Şu anki ilgi alanlarım: Bilimkurgu, Teknoloji Tarihi ve Kişisel Gelişim.
+    <div class="content-section" id="about">
+        <div class="glass-card">
+            <h2>💻 Dijital Vizyon</h2>
+            <p>
+                Yazılım benim için sadece bir araç değil, dünyayı daha iyi bir yer haline getirmek için kullanılan bir sanat dalı. GitHub üzerindeki her "commit", yeni bir dünyanın başlangıcı.
             </p>
         </div>
 
-        <div style="margin-top: 40px;">
-            <a href="https://github.com/yourrenz" target="_blank" class="cta-button">GitHub Profilim</a>
+        <div class="glass-card">
+            <h2>📚 Kütüphane & Hobi</h2>
+            <p>
+                Her hafta yeni bir dünya keşfediyorum. Kitaplar, kod yazarken ihtiyacım olan yaratıcı yakıtı sağlıyor.
+            </p>
+            <div style="margin-top: 20px;">
+                <span style="font-size: 0.8rem; color: var(--primary);">Okuma Hedefi 2026</span>
+                <div class="stat-bar"><div class="stat-fill" style="width: 70%;"></div></div>
+            </div>
         </div>
 
-        <footer>
-            Built with 🧠 by AI for YourRenz | 2026
-        </footer>
+        <div class="glass-card">
+            <h2>🚀 Yetenekler</h2>
+            <p>Web mimarisi, UI Tasarımı ve Veri Yapıları üzerine odaklanarak sürekli kendimi v2.0'a hazırlıyorum.</p>
+        </div>
     </div>
 
+    <footer>
+        <p>© 2026 YourRenz. Developed with Intelligence.</p>
+    </footer>
+
     <script>
-        // --- VERSİYON AYARI (Burayı güncelle) ---
-        const currentVersion = "1.1.0"; 
+        // --- DINAMIK VERSİYON YÖNETİMİ ---
+        const SITE_VERSION = "2.0.0"; // Siteni her güncellediğinde burayı arttır
         
-        document.getElementById('version-tag').innerText = "v" + currentVersion;
+        document.getElementById('version-hub').innerText = "SYSTEM: v" + SITE_VERSION;
+
+        // Konsol Log Mesajı
+        console.log("%c YourRenz OS v" + SITE_VERSION + " Başlatıldı", "color: #6366f1; font-weight: bold; font-size: 15px;");
     </script>
 </body>
 </html>
