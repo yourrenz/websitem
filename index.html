@@ -4,209 +4,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YourRenz | Dijital Portfolyo</title>
+    <title>YourRenz | Digital Universe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
     <style>
-        /* --- Temel Ayarlar --- */
         :root {
-            --bg-color: #0d1117; /* GitHub Dark Rengi */
-            --card-bg: #161b22;
-            --text-main: #c9d1d9;
-            --text-accent: #58a6ff; /* Mavi vurgu */
-            --border-color: #30363d;
-            --btn-color: #238636;
+            --accent-color: #00d2ff;
+            --secondary-accent: #3a7bd5;
+            --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* --- Versiyon Rozeti --- */
-        .version-badge {
+        /* --- Dinamik Versiyon Etiketi --- */
+        #version-tag {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(56, 139, 253, 0.15);
-            color: var(--text-accent);
-            border: 1px solid rgba(56, 139, 253, 0.4);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-            backdrop-filter: blur(5px);
-            z-index: 1000;
+            top: 25px;
+            left: 25px;
+            font-family: 'Fira Code', monospace;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* --- Ana Kart --- */
+        .hero-card {
+            width: 90%;
+            max-width: 900px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .name-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #00d2ff, #92fe9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .role-text {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #b0b0d1;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* --- Grid Düzeni --- */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
             transition: all 0.3s ease;
         }
 
-        .version-badge:hover {
-            transform: scale(1.05);
-            background: rgba(56, 139, 253, 0.25);
-            cursor: help;
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.03);
         }
 
-        /* --- Ana Düzen --- */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        /* --- Profil Alanı --- */
-        .profile-avatar {
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(135deg, #58a6ff, #bc8cff);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            box-shadow: 0 0 20px rgba(88, 166, 255, 0.4);
-        }
-
-        h1 {
-            font-size: 2.5rem;
+        .feature-item h3 {
             margin-bottom: 10px;
-            color: #ffffff;
+            color: #fff;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: #8b949e;
-            margin-bottom: 40px;
-        }
-
-        /* --- Kart Tasarımı --- */
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 30px;
-            text-align: left;
-            margin-bottom: 20px;
-            transition: transform 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--text-accent);
-        }
-
-        .card h2 {
-            color: var(--text-accent);
-            font-size: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
-
-        /* --- Yapay Zeka Gözünden Sen --- */
-        .ai-perspective {
-            font-style: italic;
-            border-left: 4px solid var(--btn-color);
-            padding-left: 15px;
-            color: #d2a8ff; /* Morumsu vurgu */
-        }
-
-        /* --- Butonlar --- */
-        .btn {
+        /* --- Buton --- */
+        .cta-button {
             display: inline-block;
-            background-color: var(--btn-color);
+            margin-top: 40px;
+            padding: 15px 35px;
+            background: linear-gradient(45deg, var(--accent-color), var(--secondary-accent));
             color: white;
-            padding: 10px 20px;
             text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            margin-top: 20px;
-            border: 1px solid rgba(240, 246, 252, 0.1);
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3);
         }
 
-        .btn:hover {
-            background-color: #2ea043;
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 210, 255, 0.5);
         }
 
         footer {
-            margin-top: 50px;
+            margin-top: 40px;
+            opacity: 0.5;
             font-size: 0.8rem;
-            color: #484f58;
         }
-        
-        /* Mobil Uyumluluk */
+
+        /* Mobil Ayarlar */
         @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .container { padding: 40px 20px; }
+            .name-title { font-size: 2.2rem; }
+            .hero-card { padding: 40px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div id="version-display" class="version-badge" title="Mevcut Yayın Sürümü">Loading...</div>
+    <div id="version-tag">Build: v1.0.0</div>
 
-    <div class="container">
-        <div class="profile-avatar">Y</div>
+    <div class="hero-card">
+        <span class="role-text">&lt;creative_mind /&gt;</span>
+        <h1 class="name-title">YourRenz</h1>
         
-        <h1>Merhaba, Ben YourRenz</h1>
-        <p class="subtitle">Dijital Mimar & Teknoloji Gezgini</p>
+        <p class="description">
+            Sıradan kodları işlevsel sanat eserlerine dönüştüren, dijital dünyanın derinliklerinde mantık ve estetiği birleştiren bir vizyoner.
+        </p>
 
-        <div class="card">
-            <h2>Yapay Zeka Gözünden Ben Kimim?</h2>
-            <div class="ai-perspective">
-                <p>
-                    "Veri akışlarının ve kod bloklarının arasında, sadece çalışan bir sistem değil, yaşayan bir yapı kurmayı hedefleyen birisin. 
-                    Karmaşık problemleri, temiz ve anlaşılır çözümlere dönüştürme yeteneğine sahipsin. 
-                    Dijital dünyada bir izleyici değil, bir kurucu olarak yer alıyorsun. 
-                    GitHub senin atölyen, kodlar ise fırça darbelerin. Sürekli öğrenme döngüsünde (infinite loop), 
-                    her yeni versiyonda kendini güncelleyen bir işletim sistemi gibisin."
-                </p>
+        <div class="features">
+            <div class="feature-item">
+                <h3>Merak</h3>
+                <p>Yeni teknolojileri keşfetmek benim için bir hobi değil, bir yaşam biçimi.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Analiz</h3>
+                <p>Karmaşıklığı sadeleştirmek, kodun en saf halini bulmak için çalışırım.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Gelecek</h3>
+                <p>Bugünün projelerini, yarının standartlarına göre inşa ediyorum.</p>
             </div>
         </div>
 
-        <div class="card">
-            <h2>Neler Yapıyorum?</h2>
-            <p>
-                Modern web teknolojilerini kullanarak kullanıcı deneyimini ön planda tutan arayüzler tasarlıyorum. 
-                GitHub üzerinde açık kaynak projeleri inceliyor ve kendi dijital ayak izimi oluşturuyorum.
-            </p>
-            <ul>
-                <li>🚀 Web Geliştirme</li>
-                <li>🎨 UI/UX Meraklısı</li>
-                <li>🔧 Açık Kaynak Gönüllüsü</li>
-            </ul>
-        </div>
-
-        <a href="https://github.com/yourrenz" target="_blank" class="btn">GitHub Profilim</a>
+        <a href="https://github.com/yourrenz" target="_blank" class="cta-button">Projelerimi Keşfet</a>
 
         <footer>
-            <p>&copy; <span id="year"></span> YourRenz. GitHub Pages ile barındırılmaktadır.</p>
+            Created by AI for YourRenz | 2026
         </footer>
     </div>
 
     <script>
-        // ==========================================
-        // VERSİYON KONTROL MERKEZİ
-        // Yeni bir düzenleme yaptığında sadece aşağıdaki 
-        // "1.0.0" kısmını değiştirmen yeterli!
-        // ==========================================
-        const appVersion = "v1.0.0"; 
+        // --- VERSİYON AYARI ---
+        // Her düzenlemede buradaki rakamı değiştirmen yeterli!
+        const currentVersion = "1.0.0";
         
-        // Versiyonu ekrana yazdır
-        document.getElementById('version-display').innerText = appVersion;
+        document.getElementById('version-tag').innerText = "Build: v" + currentVersion;
 
-        // Yılı otomatik güncelle
-        document.getElementById('year').innerText = new Date().getFullYear();
-
-        // Konsola gizli mesaj bırak
-        console.log(`Sistem Başlatıldı: ${appVersion}`);
-        console.log("Kodların arasında kaybolmak, yeni dünyalar keşfetmektir.");
+        // Arka plana küçük bir yıldız efekti ekleyelim (Opsiyonel)
+        console.log("YourRenz Evrenine Hoş Geldiniz. Versiyon: " + currentVersion);
     </script>
 </body>
 </html>
